@@ -22,14 +22,14 @@ class RisObject(Shared):
         return self
 
     def add_doi(self):
-        if "doi" in self.cffobj.keys():
-            self.doi = f"DO  - {self.cffobj['doi']}\n"
         if "identifiers" in self.cffobj.keys():
             identifiers = self.cffobj["identifiers"]
             for identifier in identifiers:
                 if identifier["type"] == "doi":
                     self.doi = f"DO  - {identifier['value']}\n"
                     break
+        if "doi" in self.cffobj.keys():
+            self.doi = f"DO  - {self.cffobj['doi']}\n"
         return self
 
     def add_url(self):
