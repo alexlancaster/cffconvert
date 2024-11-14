@@ -39,14 +39,14 @@ class SchemaorgObject(Shared):
         return self
 
     def add_identifier(self):
-        if "doi" in self.cffobj.keys():
-            self.identifier = f"https://doi.org/{self.cffobj['doi']}"
         if "identifiers" in self.cffobj.keys():
             identifiers = self.cffobj["identifiers"]
             for identifier in identifiers:
                 if identifier["type"] == "doi":
                     self.identifier = f"https://doi.org/{identifier['value']}"
                     break
+        if "doi" in self.cffobj.keys():
+            self.identifier = f"https://doi.org/{self.cffobj['doi']}"
         return self
 
     def add_type(self):

@@ -17,14 +17,14 @@ class BibtexObject(Shared):
         return self
 
     def add_doi(self):
-        if "doi" in self.cffobj.keys():
-            self.doi = "doi = {" + self.cffobj["doi"] + "}"
         if "identifiers" in self.cffobj.keys():
             identifiers = self.cffobj["identifiers"]
             for identifier in identifiers:
                 if identifier["type"] == "doi":
                     self.doi = "doi = {" + identifier["value"] + "}"
                     break
+        if "doi" in self.cffobj.keys():
+            self.doi = "doi = {" + self.cffobj["doi"] + "}"
         return self
 
     def add_month(self):
